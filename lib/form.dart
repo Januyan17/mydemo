@@ -18,7 +18,7 @@ class _HomePageState extends State<HomePage> {
       r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$';
 
   void _SubmitForm() {
-    final isValid = _formKey.currentState?.validate();
+    final valid = _formKey.currentState?.validate();
   }
 
   @override
