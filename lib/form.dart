@@ -10,8 +10,12 @@ class _HomePageState extends State<HomePage> {
 
   String _userEmail = '';
   String _userName = '';
+  String _mobileNumber = '';
   String _password = '';
   String _confirmPassword = '';
+
+  String pattern =
+      r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$';
 
   void _SubmitForm() {
     final isValid = _formKey.currentState?.validate();
@@ -36,11 +40,11 @@ class _HomePageState extends State<HomePage> {
                         decoration: InputDecoration(labelText: 'Email'),
                         validator: (value) {
                           if (value!.isEmpty) {
-                            return 'Please enter your email address';
+                            return 'Required';
                           }
 
                           if (!RegExp(r'\S+@\S+\.\S+').hasMatch(value!)) {
-                            return 'Please enter a valid email address';
+                            return 'Enter Valid Email Address';
                           }
 
                           return null;
@@ -54,7 +58,7 @@ class _HomePageState extends State<HomePage> {
                         decoration: InputDecoration(labelText: 'Username'),
                         validator: (value) {
                           if (value!.isEmpty) {
-                            return 'This field is required';
+                            return 'Required';
                           }
                           if (value.length < 4) {
                             return 'Username must be at least 4 characters in length';
@@ -65,17 +69,41 @@ class _HomePageState extends State<HomePage> {
                         onChanged: (value) => _userName = value,
                       ),
 
+                      //Mobile Number
+
+                      TextFormField(
+                        decoration: InputDecoration(labelText: 'Mobile Number'),
+                        obscureText: false,
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return 'Required';
+                          }
+
+                          if (value.length < 10) {
+                            return 'Invalid Mobile Number';
+                          }
+
+                          return null;
+                        },
+                        onChanged: (value) => _mobileNumber = value,
+                      ),
+
                       TextFormField(
                         decoration: InputDecoration(labelText: 'Password'),
                         obscureText: true,
                         validator: (value) {
                           if (value!.isEmpty) {
-                            return 'This field is required';
+                            return 'Required';
                           }
                           if (value.length < 8) {
                             return 'Password must be at least 8 characters in length';
                           }
 
+                          RegExp regex = RegExp(
+                              r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$');
+                          if (!regex.hasMatch(value)) {
+                            return 'Enter valid password';
+                          }
                           return null;
                         },
                         onChanged: (value) => _password = value,
@@ -98,6 +126,7 @@ class _HomePageState extends State<HomePage> {
                         },
                         onChanged: (value) => _confirmPassword = value,
                       ),
+
                       SizedBox(height: 30),
 
                       Container(
