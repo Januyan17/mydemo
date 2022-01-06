@@ -14,8 +14,7 @@ class _HomePageState extends State<HomePage> {
   String _password = '';
   String _confirmPassword = '';
 
-  String pattern =
-      r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$';
+  int? _mobile;
 
   void _SubmitForm() {
     final valid = _formKey.currentState?.validate();
@@ -36,6 +35,8 @@ class _HomePageState extends State<HomePage> {
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
+                      //Email Validation
+
                       TextFormField(
                         decoration: InputDecoration(labelText: 'Email'),
                         validator: (value) {
@@ -52,7 +53,7 @@ class _HomePageState extends State<HomePage> {
                         onChanged: (value) => _userEmail = value,
                       ),
 
-                      //User Name
+                      //User Name Validation
 
                       TextFormField(
                         decoration: InputDecoration(labelText: 'Username'),
@@ -69,7 +70,7 @@ class _HomePageState extends State<HomePage> {
                         onChanged: (value) => _userName = value,
                       ),
 
-                      //Mobile Number
+                      //Mobile Number Validation
 
                       TextFormField(
                         decoration: InputDecoration(labelText: 'Mobile Number'),
@@ -87,6 +88,8 @@ class _HomePageState extends State<HomePage> {
                         },
                         onChanged: (value) => _mobileNumber = value,
                       ),
+
+                      //Password validation
 
                       TextFormField(
                         decoration: InputDecoration(labelText: 'Password'),
@@ -108,6 +111,8 @@ class _HomePageState extends State<HomePage> {
                         },
                         onChanged: (value) => _password = value,
                       ),
+
+                      //conform password validation
 
                       TextFormField(
                         decoration:
